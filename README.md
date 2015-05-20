@@ -1,9 +1,3 @@
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script language="JavaScript">
-$(document).ready( function () {
-   $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
-})
-</script>
 #FiveProgrammingProblems
 ###[「ソフトウェアエンジニアならば1時間以内に解けなければいけない5つの問題」](http://www.softantenna.com/wp/software/5-programming-problems/)を解いてみた
 
