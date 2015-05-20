@@ -1,7 +1,5 @@
-# FiveProgrammingProblems
-「ソフトウェアエンジニアならば1時間以内に解けなければいけない5つの問題」を解いてみた
----
-http://www.softantenna.com/wp/software/5-programming-problems/
+#FiveProgrammingProblems
+###[「ソフトウェアエンジニアならば1時間以内に解けなければいけない5つの問題」](http://www.softantenna.com/wp/software/5-programming-problems/)を解いてみた
 
 ##問題1
 forループ、whileループ、および再帰を使用して、リスト内の数字の合計を計算する3つの関数を記述せよ。
