@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B342A9CE-5E33-4061-AD52-26572E17B775}</ProjectGuid>
+    <ProjectGuid>{BCAC72AF-5D4B-4311-89BB-EEE61E7BAA23}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FiveProgrammingProblems</RootNamespace>
+    <RootNamespace>Problem1</RootNamespace>
     <AssemblyName>Problem1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
