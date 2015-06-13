@@ -59,6 +59,12 @@ namespace Jp._9684.FiveProgrammingProblems
             }
         }
 
+        /// <summary>
+        /// 与えられた文字列を指定された位置で分割し、配列に格納して返します。
+        /// </summary>
+        /// <param name="text">分割する文字列</param>
+        /// <param name="splitIndex">分割位置</param>
+        /// <returns>文字列を分割した結果の配列</returns>
         static string[] Split(string text, int splitIndex)
         {
             if (0 < splitIndex && splitIndex < text.Length)
@@ -74,9 +80,9 @@ namespace Jp._9684.FiveProgrammingProblems
             }
         }
 
-
-
-        private static Regex NUMBER = new Regex("^[0-9]+$");
+        private const string PLUS = "+";
+        private const string MINUS = "-";
+        private static readonly Regex NUMBER = new Regex("^[0-9]+$");
         /// <summary>
         /// 
         /// </summary>
@@ -93,11 +99,11 @@ namespace Jp._9684.FiveProgrammingProblems
                 // ふたとおり（+/-）の演算子を挿入して次の要素をチェック
 
                 List<string> p = new List<string>(combi);
-                p.Insert(index, "+");
+                p.Insert(index, PLUS);
                 ConcatOperator(ref formulaList, ref p, index + 1);
 
                 List<string> m = new List<string>(combi);
-                m.Insert(index, "-");
+                m.Insert(index, MINUS);
                 ConcatOperator(ref formulaList, ref m, index + 1);
 
                 return;
@@ -109,14 +115,16 @@ namespace Jp._9684.FiveProgrammingProblems
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="numbers"></param>
-        /// <param name="answer"></param>
+        /// <param name="numbers">分割して計算する対象となる数字</param>
+        /// <param name="answer">計算結果に一致して欲しい答え</param>
         /// <returns></returns>
         static List<List<string>> GetCorrectFormulaList(string numbers, int answer)
         {
+            // 与えられた文字列を分割して考えられるすべての組み合わせで結合
             List<string[]> combi = new List<string[]>();
-            SplitAndConcat(ref combi, new string[] { "123456789" });
+            SplitAndConcat(ref combi, new string[] { numbers });
 
+            // すべての組み合わせの数字の間にすべてのパターンで演算子（+/-）を挿入
             List<List<string>> formulaList = new List<List<string>>();
             foreach (string[] arr in combi)
             {
@@ -124,24 +132,25 @@ namespace Jp._9684.FiveProgrammingProblems
                 ConcatOperator(ref formulaList, ref c, 0);
             }
 
+            // すべての“式”を実際に計算してみて、指定された答えと一致する“式”のみ回答リストに追加
             List<List<string>> CorrectFormulaList = new List<List<string>>();
             foreach (List<string> formula in formulaList)
             {
-                int ans = 0;
+                int sum = 0;
                 bool plus = true;
                 foreach (string s in formula)
                 {
                     if (NUMBER.IsMatch(s))
                     {
                         int n = int.Parse(s);
-                        ans = plus ? ans + n : ans - n;
+                        sum = plus ? sum + n : sum - n;
                     }
                     else
                     {
-                        plus = (s == "+");
+                        plus = (s == PLUS);
                     }
                 }
-                if (ans == 100)
+                if (sum == answer)
                 {
                     CorrectFormulaList.Add(formula);
                 }
@@ -149,6 +158,10 @@ namespace Jp._9684.FiveProgrammingProblems
             return CorrectFormulaList;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             try
