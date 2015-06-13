@@ -84,11 +84,11 @@ namespace Jp._9684.FiveProgrammingProblems
         private const string MINUS = "-";
         private static readonly Regex NUMBER = new Regex("^[0-9]+$");
         /// <summary>
-        /// 
+        /// 組み合わせ分割された数列に演算子（+/-）を挿入します。
         /// </summary>
-        /// <param name="formulaList"></param>
-        /// <param name="combi"></param>
-        static void ConcatOperator(ref List<List<string>> formulaList, ref List<string> combi, int index)
+        /// <param name="formulaList">演算子を挿入した式リスト</param>
+        /// <param name="combi">組み合わせ分割済の数列</param>
+        static void InsertOperator(ref List<List<string>> formulaList, ref List<string> combi, int index)
         {
             if (index < combi.Count
                 && NUMBER.IsMatch(combi[index])
@@ -100,11 +100,11 @@ namespace Jp._9684.FiveProgrammingProblems
 
                 List<string> p = new List<string>(combi);
                 p.Insert(index, PLUS);
-                ConcatOperator(ref formulaList, ref p, index + 1);
+                InsertOperator(ref formulaList, ref p, index + 1);
 
                 List<string> m = new List<string>(combi);
                 m.Insert(index, MINUS);
-                ConcatOperator(ref formulaList, ref m, index + 1);
+                InsertOperator(ref formulaList, ref m, index + 1);
 
                 return;
             }
@@ -113,7 +113,7 @@ namespace Jp._9684.FiveProgrammingProblems
         }
 
         /// <summary>
-        /// 
+        /// この問題に対する回答の本処理
         /// </summary>
         /// <param name="numbers">分割して計算する対象となる数字</param>
         /// <param name="answer">計算結果に一致して欲しい答え</param>
@@ -129,7 +129,7 @@ namespace Jp._9684.FiveProgrammingProblems
             foreach (string[] arr in combi)
             {
                 List<string> c = new List<string>(arr);
-                ConcatOperator(ref formulaList, ref c, 0);
+                InsertOperator(ref formulaList, ref c, 0);
             }
 
             // すべての“式”を実際に計算してみて、指定された答えと一致する“式”のみ回答リストに追加
